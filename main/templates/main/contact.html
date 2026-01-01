@@ -1,0 +1,65 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+<div class="contact-layout">
+
+  <!-- LEFT CARD -->
+  <div class="card contact-intro">
+    <h1>Contact Me 📬</h1>
+    <p>
+      Let’s connect. Whether it’s a project idea, collaboration, or inquiry,
+      feel free to send a message.
+    </p>
+  </div>
+
+  <!-- RIGHT CARD -->
+  <div class="card contact-modern">
+
+    {% if success %}
+      <div class="contact-success">
+        Message sent successfully. I’ll get back to you shortly.
+      </div>
+    {% endif %}
+
+    <form method="post" class="contact-form-modern">
+      {% csrf_token %}
+
+      <div class="input-group">
+        <input type="text" name="name" required placeholder=" ">
+        <label>Your Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="email" name="email" required placeholder=" ">
+        <label>Your Email</label>
+      </div>
+
+      <div class="input-group textarea-group">
+        <textarea name="message" rows="5" required placeholder=" "></textarea>
+        <label>Your Message</label>
+      </div>
+
+      <button type="submit" class="contact-send-btn">
+        Send Message →
+      </button>
+    </form>
+
+    <div class="contact-divider">
+      <span>OR</span>
+    </div>
+
+    <div class="contact-social-modern">
+      <h3>Connect with me</h3>
+
+      <div class="social-grid">
+        <a href="#" class="social-card instagram">Instagram</a>
+        <a href="https://www.linkedin.com/in/meet0625/" class="social-card linkedin">LinkedIn</a>
+        <a href="#" class="social-card portfolio">Portfolio</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}
