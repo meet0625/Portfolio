@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    background-color: #0a0c10;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(79, 140, 255, 0.10), transparent),
+      radial-gradient(ellipse 60% 40% at 90% 10%, rgba(245, 166, 35, 0.05), transparent);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: #4f8cff;
+    color: #0a0c10;
+  }
+
+  :focus-visible {
+    outline: 2px solid #4f8cff;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100]
+      focus:bg-accent focus:text-bg focus:px-4 focus:py-2 focus:rounded-md focus:font-mono
+      focus:text-sm;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs md:text-sm text-accent tracking-wide;
+  }
+
+  .eyebrow::before {
+    content: '// ';
+    color: #8b93a7;
+  }
+
+  .section-title {
+    @apply font-display text-3xl sm:text-4xl md:text-[2.75rem] font-semibold text-text mt-2;
+  }
+
+  .container-content {
+    @apply max-w-content mx-auto px-5 sm:px-8;
+  }
+
+  .card {
+    @apply bg-surface border border-border rounded-xl transition-colors duration-300;
+  }
+
+  .card:hover {
+    @apply border-accent/40;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-accent text-bg font-medium font-body
+      px-5 py-2.5 rounded-lg transition-all duration-200 hover:bg-white
+      active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border border-border text-text font-medium
+      px-5 py-2.5 rounded-lg transition-all duration-200 hover:border-accent hover:text-accent
+      active:scale-[0.98];
+  }
+
+  .tag {
+    @apply font-mono text-xs px-2.5 py-1 rounded-md bg-surface-alt border border-border text-muted;
+  }
+
+  .reveal {
+    opacity: 0;
+  }
+
+  .reveal.is-visible {
+    animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}

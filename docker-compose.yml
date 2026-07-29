@@ -1,0 +1,18 @@
+services:
+  portfolio:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_FORM_ENDPOINT: ${VITE_FORM_ENDPOINT:-}
+    image: meet-kadiya-portfolio:latest
+    container_name: meet-kadiya-portfolio
+    restart: unless-stopped
+    ports:
+      - '${PORT:-8080}:80'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:80/']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
